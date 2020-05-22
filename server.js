@@ -11,15 +11,7 @@ const User = require('./models/User')
 
 const app = express()
 
-//Body Parser
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
 
-// DB Config
-const db = 'mongodb+srv://pgyh:mmmmmm88@cluster0-ddyp4.mongodb.net/test?retryWrites=true&w=majority'
-const keys = require('./config/keys')
-
-const EMAIL_SECRET = 'asdf1093KMnzxcvnkljvasdu09123nlasdasdf'
 
 
 
