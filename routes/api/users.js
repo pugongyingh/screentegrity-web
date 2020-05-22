@@ -16,12 +16,12 @@ const User = require('../../models/User')
 const keys = require('../../config/keys')
 
 let transporter = nodemailer.createTransport({
-  host: keys.MG_HOST,
-  port: 587,
-  secure: false, // true for 465, false for other ports
+  host: 'smtp.sina.com.cn',
+  port: 465,
+  secureConnection: true, // true for 465, false for other ports
   auth: {
-    user: keys.MG_USERNAME,
-    pass: keys.MG_PASSWORD,
+    user: 'zyybin@sina.com.cn',
+    pass: '6017837',
   },
 })
 
@@ -69,7 +69,7 @@ router.post('/register', (req, res) => {
         const url = `https://screentegrity.com/confirmation/${emailToken}`
 
         transporter.sendMail({
-          from: 'support@screentegrity.com',
+          from: 'zyybin@sina.com.cn',
           to: req.body.email,
           subject: 'Confirm Email',
           html: `Please click this email to confirm your email: <a href="${url}">Click Here To Verify Your Email</a>`,
