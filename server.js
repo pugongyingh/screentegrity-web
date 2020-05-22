@@ -21,50 +21,12 @@ const keys = require('./config/keys')
 
 const EMAIL_SECRET = 'asdf1093KMnzxcvnkljvasdu09123nlasdasdf'
 
-// Connect to MongoDB
-mongoose
-  .connect(
-    db,
-    { useNewUrlParser: true },
-  )
-  .then(() => console.log('Database Connected'))
-  .catch(err => console.log(err))
 
-// Passport middleware
-app.use(passport.initialize())
 
-// Passport Config
-require('./config/passport')(passport)
 
-// Use Routes
-app.use('/api/users', users)
-app.use('/api/profile', profile)
-app.use('/api/posts', posts)
+app.get('/', function (req, res) {
+  res.send('Hello World');
+});
 
-app.get('/confirmation/:token', async (req, res) => {
-  try {
-    const {
-      newUser: { id },
-    } = jwt.verify(req.params.token, EMAIL_SECRET)
-
-    await User.findOneAndUpdate({ _id: id }, { $set: { confirmed: true } })
-  } catch (e) {
-    res.send('error')
-    console.log(e)
-  }
-
-  return res.redirect(`${keys.BASE_CLIENT_URL}/login`)
-})
-
-// Serve Static Assets if Production
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'))
-
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
-  })
-}
-
-const PORT = process.env.PORT || 8080
-
-app.listen(PORT, () => console.log('Listening on port', PORT))
+app.listen(8080, function () {
+  console.log('app is listening at port 8080');
