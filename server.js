@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 // DB Config
-const db = require('./config/keys').DATABASE
+const db = 'mongodb+srv://pgyh:mmmmmm88@cluster0-ddyp4.mongodb.net/test?retryWrites=true&w=majority'
 const keys = require('./config/keys')
 
 const EMAIL_SECRET = 'asdf1093KMnzxcvnkljvasdu09123nlasdasdf'
@@ -65,6 +65,6 @@ if (process.env.NODE_ENV === 'production') {
   })
 }
 
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 8080
 
 app.listen(PORT, () => console.log('Listening on port', PORT))
